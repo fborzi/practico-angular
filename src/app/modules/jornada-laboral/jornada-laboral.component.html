@@ -1,0 +1,96 @@
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-6 mb-5">
+            <form [formGroup]="formularioJornada" (ngSubmit)="guardar()">
+                <h1>Cargar Jornada Laboral</h1>
+                <div class="input-group-text mb-3">
+                    <span class="input-group-pretend col-3">Empleado</span>
+                    <select formControlName="empleado" class="form-select" type="number" aria-label="Default select example">
+                        <option *ngFor="let empleado of listadoEmpleados" value="{{empleado.id}}"> {{empleado.nombre}}
+                            {{empleado.apellido}}</option>
+                      </select>
+                </div>
+                <div
+                    *ngIf="formularioJornada.get('empledo')?.invalid && (formularioJornada.get('empleado')?.dirty || formularioJornada.get('empleado')?.dirty)">
+                    <p class="text-danger">La fecha es requerida</p>
+                </div>
+                <div class="input-group-text mb-3">
+                    <span class="input-group-pretend col-3">Fecha</span>
+                    <input formControlName="fecha" type="text" class="form-control" placeholder="Fecha - (dd-MM-aaaa)" required>
+                </div>
+                <div
+                    *ngIf="formularioJornada.get('fecha')?.invalid && (formularioJornada.get('fecha')?.dirty || formularioJornada.get('fecha')?.dirty)">
+                    <p class="text-danger">La fecha es requerida</p>
+                </div>
+                <div class="input-group-text mb-3">
+                    <span class="input-group-pretend col-3">Ingreso</span>
+                    <input formControlName="horaIngreso" type="text" class="form-control" placeholder="Hora de ingreso - (hh:mm)"
+                        required>
+                </div>
+                <div
+                    *ngIf="formularioJornada.get('horaIngreso')?.invalid && (formularioJornada.get('horaIngreso')?.dirty || formularioJornada.get('horaIngreso')?.dirty)">
+                    <p class="text-danger">La hora de ingreso es requerida</p>
+                </div>
+                <div class="input-group-text mb-3">
+                    <span class="input-group-pretend col-3">Salida</span>
+                    <input formControlName="horaSalida" type="text" class="form-control" placeholder="Hora de salida - (hh:mm)"
+                        required>
+                </div>
+                <div
+                    *ngIf="formularioJornada.get('horaSalida')?.invalid && (formularioJornada.get('horaSalida')?.dirty || formularioJornada.get('horaSalida')?.dirty)">
+                    <p class="text-danger">Lo hora de salida es requerida</p>
+                </div>
+                <div class="input-group-text mb-3">
+                    <span class="input-group-pretend col-3">Horas Trabajadas</span>
+                    <input formControlName="cantidadHoras" type="number" class="form-control"
+                        placeholder="Cantidad de Horas" required>
+                </div>
+                <div
+                    *ngIf="formularioJornada.get('cantidadHoras')?.invalid && (formularioJornada.get('cantidadHoras')?.dirty || formularioJornada.get('cantidadHoras')?.dirty)">
+                    <p class="text-danger">Lo hora de salida es requerida</p>
+                </div>
+                <div class="input-group-text mb-3">
+                    <span class="input-group-pretend col-3">Turno</span>
+                    <select formControlName="tipoJornada" class="form-select" type="number" aria-label="Default select example">
+                        <option *ngFor="let turno of listadoTurnos" value="{{turno.id}}"> {{turno.tipo}}</option>
+                      </select>
+                </div>
+            </form>
+            <div class="d-grid gap-1 d-md-flex justify-content-md-end">
+                <button class="btn btn-primary me-md-2" type="button" [disabled]="this.formularioJornada.invalid"
+                    (click)="guardar()">Cargar</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h1>Jornadas Laborales</h1>
+            <div class="container-fluid">
+                <div class="row">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">EmpleadoID</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Ingreso</th>
+                                <th scope="col">Salida</th>
+                                <th scope="col">Horas</th>
+                                <th scope="col">Turno</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let jornada of jornadasLaborales">
+                            <tr>
+                                <th scope="row">{{jornada.id}}</th>
+                                <td>{{jornada.empleado.id}}</td>
+                                <td>{{jornada.fecha}} </td>
+                                <td>{{jornada.fechaInicio}}</td>
+                                <td>{{jornada.fechaFin}}</td>
+                                <td>{{jornada.cantidadHoras}}</td>
+                                <td>{{jornada.tipoJornada.id}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 mb-5">
+            <h1>Cargar Empleado</h1>
+            <form [formGroup]="formularioEmpleado" (ngSubmit)="guardar()">
+                <div class="form-group form-floating mb-3">
+                    <input formControlName="nombre" type="text" class="form-control" placeholder="Nombre" required>
+                    <label for="floatingInput">Nombre</label>
+                    <div
+                        *ngIf="formularioEmpleado.get('nombre')?.invalid && (formularioEmpleado.get('nombre')?.dirty || formularioEmpleado.get('nombre')?.dirty)">
+                        <p class="text-danger">El nombre es requerido</p>
+                    </div>
+                </div>
+                <div class="form-group form-floating mb-3">
+                    <input formControlName="apellido" type="text" class="form-control" placeholder="Apellido" required>
+                    <label for="floatingInputInvalid">Apellido</label>
+                    <div
+                        *ngIf="formularioEmpleado.get('apellido')?.invalid && (formularioEmpleado.get('apellido')?.dirty || formularioEmpleado.get('apellido')?.dirty)">
+                        <p class="text-danger">El apellido es requerido</p>
+                    </div>
+                </div>
+            </form>
+            <div class="d-grid gap-1 d-md-flex justify-content-md-end">
+                <button class="btn btn-primary me-md-2" type="button" [disabled]="this.formularioEmpleado.invalid"
+                    (click)="guardar()">Cargar</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h1>Empleados</h1>
+            <div class="container">
+                <div class="row">
+                    <div *ngFor="let empleado of listadoEmpleados" class="col-md-4 mb-3">
+                        <div class="card" style="width: 12rem;">
+                            <img src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?t=st=1656510527~exp=1656511127~hmac=e7f37e8b98a552d70a1e96f73013d1d7e92a2c7f46d414cfa75bf54fa9dc424f&w=1380"
+                                class="card-img-top" alt="empleado">
+                            <div class="card-body">
+                                <h5 class="card-title">{{empleado.nombre}} {{empleado.apellido}}</h5>
+                                <small class="card-text">Número de ID: {{empleado.id}} </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
